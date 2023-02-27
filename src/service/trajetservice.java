@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package service;
-import connexionbd.util.DataSource;
+import connexionBD.DataSource;
 import entity.trajet;
 import java.sql.*;
 import java.util.ArrayList;
@@ -25,7 +25,7 @@ public class trajetservice implements IService<trajet>{
         
        
         try {
-            String reqt="INSERT INTO trajet (id_trajet ,depart, destination,nb_place, prix) values"+"('"+t.getId_trajet()+"','"+t.getDepart()+"','"+t.getDestination()+"','"+t.getNb_place()+"','"+t.getPrix()+"')";
+            String reqt="INSERT INTO trajet (depart, destination, type) values"+"('"+t.getDepart()+"','"+t.getDestination()+"','"+t.getType()+"')";
             System.out.println("trajet ajouté");
             Statement ste=con.createStatement();
             ste.executeUpdate(reqt);
@@ -36,51 +36,59 @@ public class trajetservice implements IService<trajet>{
         
     }
     
-     @Override
-    public void delete (trajet t){
-         try {
-             String req= "Delete From trajet where id_trajet="+t.getId_trajet();
-             System.out.println("trajet supprimer");
-             Statement ste=con.createStatement();
-             ste.executeUpdate(req);
-         } catch (SQLException ex) {
-             Logger.getLogger(trajetservice.class.getName()).log(Level.SEVERE, null, ex);
-         }
-        
+    @Override
+    public boolean  supprimer(trajet t) throws SQLException {
+    boolean ok = false;
+        try {
+            PreparedStatement req = con.prepareStatement("delete from trajet where id_trajet = ? ");
+            req.setInt(1, t.getId_trajet());
+            req.executeUpdate();
+            ok = true;
+        } catch (SQLException ex) {
+            System.out.println("error in delete " + ex);
+        }
+        return ok;  
     }
    
      @Override
-    public void update (trajet t){
+    public boolean update (trajet t)throws SQLException {
+            boolean ok = false;
+
          try {
-             String req= "update trajet set nb_place='5'where id_trajet= 1";
-             System.out.println("trajet est modifier");
-             Statement ste=con.createStatement();
+                String req= "UPDATE trajet SET depart='"+t.getDepart()+"',destination='"+t.getDestination()+"',type='"+t.getType()+"' WHERE id_trajet='"+t.getId_trajet()+"'";
+                PreparedStatement ste = con.prepareStatement(req);
              ste.executeUpdate(req);
+                          System.out.println("trajet est modifier");
+
+                         ok = true;
+
          } catch (SQLException ex) {
              Logger.getLogger(trajetservice.class.getName()).log(Level.SEVERE, null, ex);
          }
+         return ok;
     }
 
     /**
      *
      * @return
      */
+     @Override
     public List<trajet> DisplayAll() {
 		// TODO Auto-generated method stub
 		List<trajet> listeTrajet = new ArrayList<>();
 
-		String requete = "select * from experience";
+		String requete = "SELECT * FROM trajet";
 		try {
 			Statement statement = con.createStatement();
 			ResultSet resultat = statement.executeQuery(requete);
 
 			while (resultat.next()) {
-				trajet t = new trajet("");
-				t.setId_trajet(resultat.getInt(1));
-				t.setDepart(resultat.getNString(2));
-				t.setDestination(resultat.getNString(3));
-				t.setNb_place(resultat.getInt(1));
-				t.setPrix(resultat.getFloat(2));
+				trajet t = new trajet(
+				resultat.getInt(1),
+				resultat.getString(2),
+				resultat.getString(3),
+				resultat.getString(4));
+				
 				listeTrajet.add(t);
 			}
 			return listeTrajet;
@@ -92,4 +100,7 @@ public class trajetservice implements IService<trajet>{
 	
     
 }
+   
 }
+
+   

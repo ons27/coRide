@@ -12,34 +12,35 @@ package entity;
 public class trajet {
     
     private int id_trajet;
+
+  
     private String depart;
     private String destination;
-    private int nb_place;
-    private float prix;
-    
-    
+    private String type;
 
-    public trajet(int id_trajet, String depart, String destination, int nb_place, float prix) {
+    public trajet(String depart, String destination, String type) {
+        this.depart = depart;
+        this.destination = destination;
+        this.type = type;
+    }
+
+    public trajet(String depart, String destination) {
+        this.depart = depart;
+        this.destination = destination;
+    }
+
+    public trajet(int id_trajet, String depart, String destination, String type) {
         this.id_trajet = id_trajet;
         this.depart = depart;
         this.destination = destination;
-        this.nb_place = nb_place;
-        this.prix = prix;
+        this.type = type;
     }
-
-    public trajet(String string) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-   
+    
+    
 
     @Override
     public String toString() {
-        return "trajet{" + "id_trajet=" + id_trajet + ", depart=" + depart + ", destination=" + destination + ", nb_place=" + nb_place + ", prix=" + prix + '}';
-    }
-
-    public int getId_trajet() {
-        return id_trajet;
+        return "trajet{" + "depart=" + depart + ", destination=" + destination + ", type=" + type + '}';
     }
 
     public String getDepart() {
@@ -50,16 +51,8 @@ public class trajet {
         return destination;
     }
 
-    public int getNb_place() {
-        return nb_place;
-    }
-
-    public float getPrix() {
-        return prix;
-    }
-
-    public void setId_trajet(int id_trajet) {
-        this.id_trajet = id_trajet;
+    public String getType() {
+        return type;
     }
 
     public void setDepart(String depart) {
@@ -70,13 +63,18 @@ public class trajet {
         this.destination = destination;
     }
 
-    public void setNb_place(int nb_place) {
-        this.nb_place = nb_place;
+    public void setType(String type) {
+        this.type = type;
+    }
+      public void setId_trajet(int id_trajet) {
+        this.id_trajet = id_trajet;
     }
 
-    public void setPrix(float prix) {
-        this.prix = prix;
+    public int getId_trajet() {
+        return id_trajet;
     }
+
+  
     
     
 }

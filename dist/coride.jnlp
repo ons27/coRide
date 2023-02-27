@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="coride.jnlp">
+  <information>
+    <title>coride</title>
+    <vendor>MSI</vendor>
+    <description>null</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="coride.jar" size="243326" download="eager" />
+    <jar href="lib\activation.jar" size="68453" download="eager" />
+    <jar href="lib\mysql-connector-j-8.0.32.jar" size="2480823" download="eager" />
+    <jar href="lib\webservices-api.jar" size="277022" download="eager" />
+    <jar href="lib\webservices-extra-api.jar" size="165582" download="eager" />
+    <jar href="lib\webservices-extra.jar" size="707526" download="eager" />
+    <jar href="lib\webservices-rt.jar" size="16582610" download="eager" />
+    <jar href="lib\webservices-tools.jar" size="2834682" download="eager" />
+  </resources>
+  <jfx:javafx-desc  width="800" height="600" main-class="coride.Coride"  name="coride" />
+  <update check="always"/>
+</jnlp>

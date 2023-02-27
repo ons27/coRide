@@ -93,45 +93,9 @@ public class trajetNGTest {
     }
 
     /**
-     * Test of getNb_place method, of class trajet.
-     */
-    @Test
-    public void testGetNb_place() {
-        System.out.println("getNb_place");
-        trajet instance = null;
-        int expResult = 0;
-        int result = instance.getNb_place();
-        assertEquals(result, expResult);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getPrix method, of class trajet.
-     */
-    @Test
-    public void testGetPrix() {
-        System.out.println("getPrix");
-        trajet instance = null;
-        float expResult = 0.0F;
-        float result = instance.getPrix();
-        assertEquals(result, expResult, 0.0);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
      * Test of setId_trajet method, of class trajet.
      */
-    @Test
-    public void testSetId_trajet() {
-        System.out.println("setId_trajet");
-        int id_trajet = 0;
-        trajet instance = null;
-        instance.setId_trajet(id_trajet);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+    
 
     /**
      * Test of setDepart method, of class trajet.
@@ -159,30 +123,6 @@ public class trajetNGTest {
         fail("The test case is a prototype.");
     }
 
-    /**
-     * Test of setNb_place method, of class trajet.
-     */
-    @Test
-    public void testSetNb_place() {
-        System.out.println("setNb_place");
-        int nb_place = 0;
-        trajet instance = null;
-        instance.setNb_place(nb_place);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setPrix method, of class trajet.
-     */
-    @Test
-    public void testSetPrix() {
-        System.out.println("setPrix");
-        float prix = 0.0F;
-        trajet instance = null;
-        instance.setPrix(prix);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+    
     
 }
