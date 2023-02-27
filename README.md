@@ -1,2 +1,0 @@
-# coRide
-hey there
