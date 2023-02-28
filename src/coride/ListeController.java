@@ -8,12 +8,17 @@ import entity.trajet;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -26,11 +31,13 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javax.sql.DataSource;
 import javax.swing.JOptionPane;
 import service.trajetservice;
 
@@ -56,9 +63,12 @@ public class ListeController implements Initializable {
     private TableColumn<?, ?> typechoice;
     @FXML
     private TableColumn<trajet, Button> updates;
+    @FXML
+    private TextField filterField;
 
     /**
      * Initializes the controller class.
+     *
      * @param url
      * @param rb
      */
@@ -75,6 +85,38 @@ public class ListeController implements Initializable {
         this.delete();
         this.update();
 
+        FilteredList<trajet> filteredData = new FilteredList<>(olp, b -> true);
+        filterField.textProperty().addListener((observable, oldValue, newValue) -> {
+
+            filteredData.setPredicate((t) -> {
+            
+
+                if (newValue == null || newValue.isEmpty()){
+                    return true;
+                }
+
+                String chercher = newValue.toLowerCase();
+
+                if (t.getDepart().toLowerCase().contains(chercher)) {
+
+                    return true;
+                } else 
+                    if (t.getDestination().toLowerCase().contains(chercher)) {
+
+                    return true;
+                } else 
+                    if (t.getType().toLowerCase().contains(chercher)) {
+
+                    return true;
+                } else 
+                    return false;
+                
+            });
+        });
+
+        SortedList<trajet> sortedData = new SortedList<>(filteredData);
+        sortedData.comparatorProperty().bind(tableviewtrajet.comparatorProperty());
+        tableviewtrajet.setItems(sortedData);
     }
 
     private void delete() {
@@ -84,7 +126,7 @@ public class ListeController implements Initializable {
                 protected void updateItem(Object item, boolean empty) {
                     setGraphic(null);
                     if (!empty) {
-                        Button b = new Button("delete");
+                        Button b = new Button("Supprimer");
                         b.setOnAction((event) -> {
                             try {
 
@@ -117,8 +159,9 @@ public class ListeController implements Initializable {
                     setGraphic(null);
                     if (!empty) {
 //                        Image imageDecline = new Image(getClass().getResourceAsStream("deleteicon.png"));
+//                        Image imageDecline = new Image(getClass().getResourceAsStream("coride_logo.png"));
 
-                        Button u = new Button("update");
+                        Button u = new Button("Modifier");
 //                        u.setGraphic(new ImageView(imageDecline));
 
                         u.setOnAction((event) -> {
@@ -162,22 +205,21 @@ public class ListeController implements Initializable {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("UpdateTrajet.fxml"));
         AnchorPane page = (AnchorPane) fxmlLoader.load();
 
-        // Criando um Estágio de Diálogo (Stage Dialog)
         Stage dialogStage = new Stage();
         dialogStage.setTitle("Gestion trajet");
         Scene scene = new Scene(page);
         dialogStage.setScene(scene);
 
-        // Setando o cliente no Controller.
         UpdateTrajetController controller = fxmlLoader.getController();
         controller.setDialogStage(dialogStage);
         controller.setTrajet(trajet);
 
-        // Mostra o Dialog e espera até que o usuário o feche
         dialogStage.showAndWait();
 
         return true;
 
     }
+    
+  
 
 }
