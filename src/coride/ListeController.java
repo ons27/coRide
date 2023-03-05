@@ -8,26 +8,20 @@ import entity.trajet;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -37,8 +31,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import javax.sql.DataSource;
-import javax.swing.JOptionPane;
 import service.trajetservice;
 
 /**
@@ -82,16 +74,16 @@ public class ListeController implements Initializable {
         departColumn.setCellValueFactory(new PropertyValueFactory("depart"));
         destinationColumn.setCellValueFactory(new PropertyValueFactory("destination"));
         typechoice.setCellValueFactory(new PropertyValueFactory("type"));
-        this.delete();
         this.update();
+        this.delete();
+        //recherche du trajet 
 
         FilteredList<trajet> filteredData = new FilteredList<>(olp, b -> true);
         filterField.textProperty().addListener((observable, oldValue, newValue) -> {
 
             filteredData.setPredicate((t) -> {
-            
 
-                if (newValue == null || newValue.isEmpty()){
+                if (newValue == null || newValue.isEmpty()) {
                     return true;
                 }
 
@@ -100,38 +92,39 @@ public class ListeController implements Initializable {
                 if (t.getDepart().toLowerCase().contains(chercher)) {
 
                     return true;
-                } else 
-                    if (t.getDestination().toLowerCase().contains(chercher)) {
+                } else if (t.getDestination().toLowerCase().contains(chercher)) {
 
                     return true;
-                } else 
-                    if (t.getType().toLowerCase().contains(chercher)) {
+                } else {
+                    return t.getType().toLowerCase().contains(chercher);
+                }
 
-                    return true;
-                } else 
-                    return false;
-                
             });
         });
 
         SortedList<trajet> sortedData = new SortedList<>(filteredData);
         sortedData.comparatorProperty().bind(tableviewtrajet.comparatorProperty());
         tableviewtrajet.setItems(sortedData);
+
     }
 
     private void delete() {
         deletes.setCellFactory((param) -> {
             return new TableCell() {
+
                 @Override
                 protected void updateItem(Object item, boolean empty) {
                     setGraphic(null);
                     if (!empty) {
-                        Button b = new Button("Supprimer");
-                        b.setOnAction((event) -> {
+                        Button s = new Button();
+                        Image image = new Image("/image/delete.png");
+
+                        s.setGraphic(new ImageView(image));
+                        s.setOnAction((event) -> {
                             try {
 
                                 if (sc.supprimer(tableviewtrajet.getItems().get(getIndex()))) {
-                                    System.out.println(tableviewtrajet.getItems().get(getIndex()));
+//                                    System.out.println(tableviewtrajet.getItems().get(getIndex()));
                                     tableviewtrajet.getItems().remove(getIndex());
                                     tableviewtrajet.refresh();
 
@@ -141,7 +134,7 @@ public class ListeController implements Initializable {
 
                             }
                         });
-                        setGraphic(b);
+                        setGraphic(s);
 
                     }
                 }
@@ -158,11 +151,14 @@ public class ListeController implements Initializable {
                 protected void updateItem(Object item, boolean empty) {
                     setGraphic(null);
                     if (!empty) {
-//                        Image imageDecline = new Image(getClass().getResourceAsStream("deleteicon.png"));
-//                        Image imageDecline = new Image(getClass().getResourceAsStream("coride_logo.png"));
 
-                        Button u = new Button("Modifier");
-//                        u.setGraphic(new ImageView(imageDecline));
+                        Button u = new Button();
+
+//                        Image imageDecline = new Image(getClass().getResourceAsStream("C:\\Users\\MSI\\Downloads\\ExamenRevisionHopitalIncomplet\\coride\\src\\image\\deleteicon.png"));
+//                            u.setGraphic(new ImageView(imageDecline));
+                        Image image = new Image(getClass().getResourceAsStream("/image/edit.png"));
+
+                        u.setGraphic(new ImageView(image));
 
                         u.setOnAction((event) -> {
                             trajet trajet = (trajet) tableviewtrajet.getSelectionModel().getSelectedItem();
@@ -219,7 +215,5 @@ public class ListeController implements Initializable {
         return true;
 
     }
-    
-  
 
 }

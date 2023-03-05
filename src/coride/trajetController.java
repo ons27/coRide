@@ -41,7 +41,7 @@ public class trajetController {
     @FXML
     private ComboBox typechoice;    
     public void initialize() {
-        typechoice.setValue("Choice Type");
+        typechoice.setValue("Type");
         typechoice.setItems(combolist);
         
     }

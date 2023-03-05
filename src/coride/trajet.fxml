@@ -36,11 +36,16 @@
       <Button layoutX="75.0" layoutY="492.0" mnemonicParsing="false" onAction="#Add" prefHeight="43.0" prefWidth="178.0" text="Enregistrer">
          <font>
             <Font name="System Bold" size="18.0" />
-         </font></Button>
+         </font>
+         <graphic>
+                 
+         </graphic></Button>
       <Button layoutX="388.0" layoutY="492.0" mnemonicParsing="false" onAction="#DisplayAll" prefHeight="43.0" prefWidth="178.0" text="Consulter">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
+         <graphic>
+         </graphic>
       </Button>
       <Pane layoutY="561.0" prefHeight="64.0" prefWidth="601.0" style="-fx-background-color: black;">
          <children>
