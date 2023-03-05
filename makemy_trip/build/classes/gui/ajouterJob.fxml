@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="507.0" prefWidth="792.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.AjouterJobController">
+   <children>
+      <Label layoutX="23.0" layoutY="336.0" text="Salaire">
+         <font>
+            <Font name="Algerian" size="24.0" />
+         </font>
+      </Label>
+      <TextField fx:id="zoneSalaire" layoutX="158.0" layoutY="334.0" promptText="En EUR">
+         <font>
+            <Font name="Algerian" size="18.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="zoneTitre" layoutX="537.0" layoutY="264.0" promptText="Job Title">
+         <font>
+            <Font name="Algerian" size="18.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="zoneDescription" layoutX="537.0" layoutY="334.0" promptText="Description du travail">
+         <font>
+            <Font name="Algerian" size="18.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="zoneLieu" layoutX="158.0" layoutY="268.0" promptText="Location">
+         <font>
+            <Font name="Algerian" size="18.0" />
+         </font>
+      </TextField>
+      <Button fx:id="btnSubmit" layoutX="598.0" layoutY="443.0" mnemonicParsing="false" onAction="#onCreate" prefHeight="30.0" prefWidth="146.0" style="-fx-background-color: green;" text="Ajouter job " textFill="#4b2f66b5">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <Label layoutX="448.0" layoutY="266.0" text="Title" textOverrun="LEADING_ELLIPSIS">
+         <font>
+            <Font name="Algerian" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="406.0" layoutY="336.0" text="Description">
+         <font>
+            <Font name="Algerian" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="12.0" layoutY="270.0" prefHeight="35.0" prefWidth="118.0" text="Location">
+         <font>
+            <Font name="Algerian" size="24.0" />
+         </font>
+      </Label>
+      <Text fill="#0db7ab" layoutX="193.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="add a job offer ." textAlignment="CENTER" wrappingWidth="493.13671875">
+         <font>
+            <Font name="Ebrima Bold" size="45.0" />
+         </font>
+      </Text>
+      <Text fill="#c40f24" layoutX="40.0" layoutY="210.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fill the form to add the job to the careers page :" textAlignment="CENTER" wrappingWidth="493.13671875">
+         <font>
+            <Font name="Ebrima Bold" size="19.0" />
+         </font>
+      </Text>
+      <Button fx:id="btnSubmit1" layoutX="631.0" layoutY="119.0" mnemonicParsing="false" onAction="#onCreate" prefHeight="30.0" prefWidth="146.0" style="-fx-background-color: green;" text="available Jobs" textFill="#4b2f66b5">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
