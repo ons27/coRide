@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="567.0" prefWidth="702.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.MoyenTransportFXMLController">
+   <children>
+      <TableView fx:id="tableMoyen" layoutX="205.0" layoutY="129.0" onMouseClicked="#selected" prefHeight="414.0" prefWidth="433.0">
+        <columns>
+          <TableColumn fx:id="id" minWidth="0.0" prefWidth="0.0" text="ID" />
+          <TableColumn fx:id="type" prefWidth="91.0" text="TYPE" />
+            <TableColumn fx:id="nbplaces" prefWidth="134.0" text="NBPLACES" />
+            <TableColumn fx:id="matricule" prefWidth="99.0" text="MATRICULE" />
+            <TableColumn fx:id="marque" prefWidth="108.0" text="MARQUE" />
+        </columns>
+      </TableView>
+      <TextArea fx:id="idMoyen" layoutX="23.0" layoutY="81.0" opacity="0.0" prefHeight="54.0" prefWidth="151.0" />
+      <TextArea fx:id="typeMoyen" layoutX="23.0" layoutY="161.0" prefHeight="54.0" prefWidth="151.0" />
+      <TextArea fx:id="nbplacesMoyen" layoutX="23.0" layoutY="266.0" prefHeight="54.0" prefWidth="151.0" />
+      <TextArea fx:id="matriculeMoyen" layoutX="23.0" layoutY="365.0" prefHeight="54.0" prefWidth="151.0" />
+      <TextArea fx:id="marqueMoyen" layoutX="23.0" layoutY="462.0" prefHeight="54.0" prefWidth="151.0" />
+      <Button fx:id="supprimerMoyen" layoutX="382.0" layoutY="69.0" mnemonicParsing="false" onMouseClicked="#deleteMoyen" text="SUPPRIMER" />
+      <Button fx:id="ajouterMoyen" layoutX="239.0" layoutY="69.0" mnemonicParsing="false" onMouseClicked="#addMoyen" text="AJOUTER" />
+      <Button fx:id="modifierMoyen" layoutX="532.0" layoutY="69.0" mnemonicParsing="false" onMouseClicked="#updateMoyen" text="MODIFIER" />
+      <Button fx:id="pdfbtn" layoutX="23.0" layoutY="44.0" mnemonicParsing="false" onMouseClicked="#pdfsignal" text="PDF" />
+      <TextArea fx:id="search" layoutX="457.0" layoutY="14.0" prefHeight="37.0" prefWidth="151.0" />
+      <Button fx:id="tribtn" layoutX="141.0" layoutY="69.0" mnemonicParsing="false" onMouseClicked="#trisignal" text="TRI" />
+   </children>
+</AnchorPane>
